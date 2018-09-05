@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Factura de venta</title>
+    <title>Informes de ventas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
             <button class="btn btn-primary" type="button">
               <i class="fas fa-search"></i>
@@ -57,7 +57,7 @@
             <a class="dropdown-item" href="#">Ajustes</a>
             <a class="dropdown-item" href="#">Registro de actividad</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</a>
           </div>
         </li>
       </ul>
@@ -71,7 +71,7 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Tablero</span>
+            <span>Desechables y plásticos</span>
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -80,14 +80,14 @@
             <span>Páginas</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Inicio de sesión</h6>
+            <h6 class="dropdown-header">Inicio de sesión:</h6>
             <a class="dropdown-item" href="login.html">Iniciar sesión</a>
             <a class="dropdown-item" href="register.html">Registrar</a>
             <a class="dropdown-item" href="forgot-password.html">Olvido de contraseña</a>
             <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Otras páginas</h6>
+            <h6 class="dropdown-header">Otras páginas:</h6>
             <a class="dropdown-item" href="404.html">404</a>
-            <a class="dropdown-item active" href="blank.html">Págnia en blanco</a>
+            <a class="dropdown-item active" href="blank.html">Inventarios</a>
           </div>
         </li>
         <li class="nav-item">
@@ -111,63 +111,138 @@
             <li class="breadcrumb-item">
               <a href="index.html">Inicio</a>
             </li>
-            <li class="breadcrumb-item active">Factura de venta</li>
+            <li class="breadcrumb-item active">Página en blanco</li>
           </ol>
 
           <!-- Page Content -->
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4">
-                <form>
-                  <div class="form-group">
-                    <p>
-                      <label>producto:</label> <br>
-                      <input id="nombre" class="form-control" type="text" placeholder="producto" onclick=calcularSubTotal()><br>
-                    </p>
-                    <p>
-                      <label>cantidad:</label> <br>
-                    </p>
-                    <input id="cantidad" class="form-control " type="number" placeholder="cantidad" onclick=calcularSubTotal()><br>
-                    <p>
-                      <label>precio:</label> <br>
-                      <input id="valorU" class="form-control " type="number" placeholder="precio" onclick=calcularSubTotal() onkeyup=calcularSubTotal()> <br>
-                    </p>
-                    <p>
-                      <label>subtotal:</label> <br>
-                      <label id="subtotal">0</label> <br>
-                    </p>
-                    <input id="adicionar" class="btn btn-success" type="button" value="Agregar" ></input>
-                  </div>
-                </form>
-              </div>
-              <div class="col-sm">
-                <div class="row">
-                  <p>Elementos en la Tabla:
-                    <div id="adicionados" class="col-sm"></div>
-                    <div class="col-sm">
-                      No. de factura #12345678
-                    </div>
-                  </p>
-                </div>
-                <table  id="mytable" class="table table-bordered table-hover ">
-                  <tr>
-                    <th>productos</th>
-                    <th>cantidad</th>
-                    <th>precio</th>
-                    <th>subtotal</th>
-                    <th>Eliminar</th>
-                  </tr>
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Data Table Example</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Inventario</th>
+                      <th>Fecha de creación</th>
+                      <th>Precio de compra</th>
+                    </tr>
+                  </thead>
                   <tfoot>
-                    <th>total</th>
-                    <th></th>
-                    <th></th>
-                    <th id="total">0</th>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Inventario</th>
+                      <th>Fecha de creación</th>
+                      <th>Precio de compra</th>
+                    </tr>
                   </tfoot>
+                  <tbody>
+                    <tr>
+                      <td>plato 12cm</td>
+                      <td>120</td>
+                      <td>2011/04/25</td>
+                      <td>$320</td>
+                    </tr>
+                    <tr>
+                      <td>plato 15cm</td>
+                      <td>240</td>
+                      <td>2011/07/25</td>
+                      <td>$770</td>
+                    </tr>
+                    <tr>
+                      <td>plato 18cm</td>
+                      <td>66</td>
+                      <td>2009/01/12</td>
+                      <td>$1400</td>
+                    </tr>
+                    <tr>
+                      <td>plato 20cm</td>
+                      <td>22</td>
+                      <td>2012/03/29</td>
+                      <td>$2000</td>
+                    </tr>
+                    <tr>
+                      <td>plato 23cm</td>
+                      <td>33</td>
+                      <td>2008/11/28</td>
+                      <td>$1900</td>
+                    </tr>
+                    <tr>
+                      <td>plato 26cm</td>
+                      <td>61</td>
+                      <td>2012/12/02</td>
+                      <td>$2700</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 5oz</td>
+                      <td>59</td>
+                      <td>2012/08/06</td>
+                      <td>$1375</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 7oz</td>
+                      <td>55</td>
+                      <td>2010/10/14</td>
+                      <td>$1200</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 9oz</td>
+                      <td>39</td>
+                      <td>2009/09/15</td>
+                      <td>$2550</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 10oz</td>
+                      <td>23</td>
+                      <td>2008/12/13</td>
+                      <td>$2360</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 12oz</td>
+                      <td>30</td>
+                      <td>2008/12/19</td>
+                      <td>$2600</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 14oz</td>
+                      <td>22</td>
+                      <td>2013/03/03</td>
+                      <td>$1700</td>
+                    </tr>
+                    <tr>
+                      <td>vaso 16oz</td>
+                      <td>36</td>
+                      <td>2008/10/16</td>
+                      <td>$2200</td>
+                    </tr>
+                    <tr>
+                      <td>vaso icopor 3.5oz</td>
+                      <td>43</td>
+                      <td>2012/12/18</td>
+                      <td>$1350</td>
+                    </tr>
+                    <tr>
+                      <td>vaso icopor 4oz</td>
+                      <td>19</td>
+                      <td>2010/03/17</td>
+                      <td>$1200</td>
+                    </tr>
+                    <tr>
+                      <td>vaso icopor 6oz</td>
+                      <td>66</td>
+                      <td>2012/11/27</td>
+                      <td>$1300</td>
+                    </tr>
+                  </tbody>
                 </table>
-                <button type="button" name="save">Guardar e imprimir</button>
               </div>
             </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
+        </div>
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
@@ -216,22 +291,15 @@
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
-    <script src= 'js/tabla.js'></script>
-    <script type="text/javascript">
 
-      document.addEventListener("onclick",calcularSubTotal)
-      function calcularSubTotal(key){
-        var cantidad = document.getElementById("cantidad").value
-        var valorU = document.getElementById("valorU").value
-        //if(key.keyCode == 9){
-          var subtotal = cantidad * valorU
-          var subtotalLabel = document.getElementById("subtotal")
-          subtotalLabel.textContent = subtotal
-        //}
-    }
-    </script>
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
 
   </body>
 

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Factura de venta</title>
+    <title>Informes de ventas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
             <button class="btn btn-primary" type="button">
               <i class="fas fa-search"></i>
@@ -57,7 +57,7 @@
             <a class="dropdown-item" href="#">Ajustes</a>
             <a class="dropdown-item" href="#">Registro de actividad</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</a>
           </div>
         </li>
       </ul>
@@ -71,7 +71,7 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Tablero</span>
+            <span>Desechables y plásticos</span>
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -80,14 +80,14 @@
             <span>Páginas</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Inicio de sesión</h6>
+            <h6 class="dropdown-header">Inicio de sesión:</h6>
             <a class="dropdown-item" href="login.html">Iniciar sesión</a>
             <a class="dropdown-item" href="register.html">Registrar</a>
             <a class="dropdown-item" href="forgot-password.html">Olvido de contraseña</a>
             <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Otras páginas</h6>
+            <h6 class="dropdown-header">Otras páginas:</h6>
             <a class="dropdown-item" href="404.html">404</a>
-            <a class="dropdown-item active" href="blank.html">Págnia en blanco</a>
+            <a class="dropdown-item active" href="blank.html">Informes de ventas</a>
           </div>
         </li>
         <li class="nav-item">
@@ -111,63 +111,46 @@
             <li class="breadcrumb-item">
               <a href="index.html">Inicio</a>
             </li>
-            <li class="breadcrumb-item active">Factura de venta</li>
+            <li class="breadcrumb-item active">Página en blanco</li>
           </ol>
 
           <!-- Page Content -->
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4">
-                <form>
-                  <div class="form-group">
-                    <p>
-                      <label>producto:</label> <br>
-                      <input id="nombre" class="form-control" type="text" placeholder="producto" onclick=calcularSubTotal()><br>
-                    </p>
-                    <p>
-                      <label>cantidad:</label> <br>
-                    </p>
-                    <input id="cantidad" class="form-control " type="number" placeholder="cantidad" onclick=calcularSubTotal()><br>
-                    <p>
-                      <label>precio:</label> <br>
-                      <input id="valorU" class="form-control " type="number" placeholder="precio" onclick=calcularSubTotal() onkeyup=calcularSubTotal()> <br>
-                    </p>
-                    <p>
-                      <label>subtotal:</label> <br>
-                      <label id="subtotal">0</label> <br>
-                    </p>
-                    <input id="adicionar" class="btn btn-success" type="button" value="Agregar" ></input>
-                  </div>
-                </form>
-              </div>
-              <div class="col-sm">
-                <div class="row">
-                  <p>Elementos en la Tabla:
-                    <div id="adicionados" class="col-sm"></div>
-                    <div class="col-sm">
-                      No. de factura #12345678
-                    </div>
-                  </p>
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-chart-area"></i>
+              Diagrama de ventas por dia</div>
+            <div class="card-body">
+              <canvas id="myAreaChart" width="100%" height="30"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="card mb-3">
+                <div class="card-header">
+                  <i class="fas fa-chart-bar"></i>
+                  diagrama de ventas por mes</div>
+                <div class="card-body">
+                  <canvas id="myBarChart" width="100%" height="50"></canvas>
                 </div>
-                <table  id="mytable" class="table table-bordered table-hover ">
-                  <tr>
-                    <th>productos</th>
-                    <th>cantidad</th>
-                    <th>precio</th>
-                    <th>subtotal</th>
-                    <th>Eliminar</th>
-                  </tr>
-                  <tfoot>
-                    <th>total</th>
-                    <th></th>
-                    <th></th>
-                    <th id="total">0</th>
-                  </tfoot>
-                </table>
-                <button type="button" name="save">Guardar e imprimir</button>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card mb-3">
+                <div class="card-header">
+                  <i class="fas fa-chart-pie"></i>
+                  Productos mas vendidos por categoria</div>
+                <div class="card-body">
+                  <canvas id="myPieChart" width="100%" height="100"></canvas>
+                </div>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
               </div>
             </div>
           </div>
+
+        </div>
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
@@ -216,22 +199,16 @@
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
-    <script src= 'js/tabla.js'></script>
-    <script type="text/javascript">
 
-      document.addEventListener("onclick",calcularSubTotal)
-      function calcularSubTotal(key){
-        var cantidad = document.getElementById("cantidad").value
-        var valorU = document.getElementById("valorU").value
-        //if(key.keyCode == 9){
-          var subtotal = cantidad * valorU
-          var subtotalLabel = document.getElementById("subtotal")
-          subtotalLabel.textContent = subtotal
-        //}
-    }
-    </script>
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
   </body>
 

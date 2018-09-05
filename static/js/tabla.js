@@ -2,14 +2,17 @@ $(document).ready(function() {
 //obtenemos el valor de los input
 
 var i = 1; //contador para asignar id al boton que borrara la fila
+var total = 0;
 
 $('#adicionar').click(function() {
 var nombre = document.getElementById("nombre").value;
 var cantidad = document.getElementById("cantidad").value;
 var valorU = document.getElementById("valorU").value;
 var subtotal = cantidad * valorU
-var fila = '<tr id="row' + i + '"><td>' + nombre + '</td><td>' + cantidad + '</td><td>' + valorU + '</td><td id="' + i + '">' + subtotal + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
-
+total = subtotal + total;
+var campoTotal = document.getElementById("total");
+campoTotal.textContent = total;
+var fila = '<tr id="row' + i + '"><td>' + nombre + '</td><td>' + cantidad + '</td><td>' + valorU + '</td><td id="subtotal' + i + '">' + subtotal + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
 i++;
 
 $('#mytable tr:first').after(fila);
@@ -19,9 +22,10 @@ $('#mytable tr:first').after(fila);
   //le resto 1 para no contar la fila del header
   document.getElementById("cantidad").value ="";
   document.getElementById("valorU").value = "";
-  document.getElementById("subtotal").value = "";
+  document.getElementById("subtotal").value = "0";
   document.getElementById("nombre").value = "";
   document.getElementById("nombre").focus();
+
 });
 
 $(document).on('click', '.btn_remove', function() {
